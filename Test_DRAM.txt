@@ -1,0 +1,202 @@
+========================================
+Given testcase1
+
+(Part A)
+
+main:
+	addi $s0, $zero, 1000
+	addi $s1, $zero, 1024
+	addi $t0, $zero, 1
+	addi $t1, $zero, 2
+	sw $t0, 0($s0)
+	sw $t1, 0($s1)
+	
+	lw $t2, 0($s0)
+	lw $t3, 0($s1)
+	
+	add $t3, $t3, $t2
+	addi $s2, $zero, 1028
+	
+	sw $t3, 0($s2)
+	
+	
+
+exit:
+
+(Part B)
+
+main:
+	addi $s0, $zero, 1000
+	addi $s1, $zero, 1024
+	addi $t0, $zero, 1
+	addi $t1, $zero, 2
+	sw $t0, 1000
+	sw $t1, 1024
+	
+	lw $t2, 1000
+	lw $t3, 1024
+	
+	add $t3, $t3, $t2
+	addi $s2, $zero, 1028
+	
+	sw $t3, 1028
+	
+	
+
+exit:
+
+
+=======================================
+Part A, Part B)
+Given testcase2
+
+main:
+	addi $t0, $zero, 1
+	addi $t1, $zero, 2
+	sw $t0, 1000
+	sw $t1, 1024
+	
+	lw $t2, 1000
+	lw $t3, 1024
+	
+	add $t3, $t3, $t2
+		
+	sw $t3, 1028
+	
+	
+
+exit:
+
+========================================
+Given testcase3
+
+Part A
+
+lw $t0, 0($s0)
+addi $t1, $t1, 1
+add $t0, $t0, 1
+
+Part B
+
+lw $t0, 0
+addi $t1, $t1, 1
+add $t0, $t0, 1
+
+========================================
+//testcase 1(infinite loop)
+main:
+	addi $t0, $zero, 1
+	addi $t1, $zero, 2
+	sw $t0, 1000
+	sw $t1, 1024
+	
+	lw $t2, 1000
+	lw $t3, 1024
+	
+	add $t3, $t3, $t2
+		
+	sw $t3, 1028
+	beq $t1, $t1, main
+	
+exit:
+
+=========================================
+//testcase 2(lw, sw)
+sw $t0, 0($s0)
+lw $t0, 1024
+
+=========================================
+//testcase 3(bound of memory)
+addi $t2, $zero, 40
+sw $t0, 80000000
+sw $t1, -40($t2)
+
+=========================================
+//testcase 4(simple lw for checking)
+
+lw $t0, 1000
+lw $t1, 1008
+lw $t2, 1016
+lw $t3, 1024
+lw $t4, 1036
+
+
+==========================================
+//testcase 5 
+Part A,B
+
+lw $t0, 1000
+addi $t1, $zero, 1008
+addi $t2, $zero, 1016
+addi $t3, $zero, 1024
+addi $t4, $zero, 1036
+addi $t1, $zero, 1008
+addi $t2, $zero, 1016
+addi $t3, $zero, 1024
+addi $t4, $zero, 1036
+lw $t5, 1024
+
+=============================================
+//testcase 6 (number of independent instructions more than required by lw/sw)
+Part A,B
+
+lw $t0, 1000
+addi $t1, $zero, 1008
+addi $t2, $zero, 1016
+addi $t3, $zero, 1024
+addi $t4, $zero, 1036
+addi $t1, $zero, 1008
+addi $t2, $zero, 1016
+addi $t3, $zero, 1024
+addi $t4, $zero, 1036
+addi $t1, $zero, 1008
+addi $t2, $zero, 1016
+addi $t3, $zero, 1024
+addi $t4, $zero, 1036
+addi $t1, $zero, 1008
+addi $t2, $zero, 1016
+addi $t3, $zero, 1024
+addi $t4, $zero, 1036
+addi $t1, $zero, 1008
+addi $t2, $zero, 1016
+addi $t3, $zero, 1024
+addi $t4, $zero, 1036
+addi $t1, $zero, 1008
+addi $t2, $zero, 1016
+addi $t3, $zero, 1024
+addi $t4, $zero, 1036
+lw $t5, 1024
+==========================================
+//testcase 7 (general)
+Part A,B
+
+
+main:
+	addi $s0, $zero, 1000
+	addi $s1, $zero, 1024
+	addi $t0, $zero, 1
+	addi $t1, $zero, 2
+	sw $t0, 1000
+	addi $t6, $zero, 20
+	add $t7, $t6, $t6
+	add $t8, $t7, $t7
+	sw $t1, 1024
+	add $t9, $t9, $t1
+	
+	lw $t2, 1000
+	addi $t1, $zero, 3
+	addi $t2, $t1, 2
+	lw $t3, 1024
+	
+	add $t3, $t3, $t2
+	addi $s2, $zero, 1028
+	
+	sw $t3, 1028
+	
+	
+
+exit:
+
+
+
+
